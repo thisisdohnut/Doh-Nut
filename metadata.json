@@ -1,0 +1,6 @@
+{
+  "name": "DOH-NUT Brand Guidelines & Visual Identity System",
+  "description": "Complete brand identity guidelines, visual system, logo rules, Doh Boy mascot, packaging mockups, and merchandise specifications for Malaysian donut brand DOH-NUT.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

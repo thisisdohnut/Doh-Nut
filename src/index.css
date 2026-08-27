@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fredoka", "Titan One", cursive, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-fun: "Titan One", "Fredoka", cursive, sans-serif;
+
+  --color-dohnut-red: #D92F2F;
+  --color-dohnut-navy: #07334F;
+  --color-dohnut-cyan: #297FC1;
+  --color-dohnut-cream: #FDEFEB;
+  --color-dohnut-pink: #EF9FBD;
+  --color-dohnut-yellow: #FFD23F;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-fun {
+    font-family: var(--font-fun);
+  }
+  .stroke-badge {
+    box-shadow: 0 0 0 3px #07334F;
+  }
+  .stroke-badge-lg {
+    box-shadow: 0 0 0 4px #07334F, 0 6px 0 0 #07334F;
+  }
+  .street-card {
+    border: 3px solid #07334F;
+    box-shadow: 4px 4px 0px 0px #07334F;
+  }
+  .street-card-hover {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .street-card-hover:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px #07334F;
+  }
+  .street-card-hover:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px 0px #07334F;
+  }
+  .brutalist-card {
+    border: 3.5px solid #07334F;
+    box-shadow: 5px 5px 0px 0px #07334F;
+  }
+  .brutalist-card-cyan {
+    border: 3.5px solid #07334F;
+    box-shadow: 5px 5px 0px 0px #297FC1;
+  }
+  .brutalist-card-red {
+    border: 3.5px solid #07334F;
+    box-shadow: 5px 5px 0px 0px #D92F2F;
+  }
+  .brutalist-card-yellow {
+    border: 3.5px solid #07334F;
+    box-shadow: 5px 5px 0px 0px #FFD23F;
+  }
+  .brutalist-btn {
+    border: 2.5px solid #07334F;
+    box-shadow: 3px 3px 0px 0px #07334F;
+    transition: all 0.12s ease-in-out;
+  }
+  .brutalist-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px 0px #07334F;
+  }
+  .brutalist-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px #07334F;
+  }
+  .grid-pattern-paper {
+    background-size: 20px 20px;
+    background-image: 
+      linear-gradient(to right, rgba(7, 51, 79, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(7, 51, 79, 0.08) 1px, transparent 1px);
+  }
+  .dot-pattern-paper {
+    background-size: 16px 16px;
+    background-image: radial-gradient(circle, rgba(7, 51, 79, 0.18) 1.5px, transparent 1.5px);
+  }
+  .animate-doh-bounce {
+    animation: doh-bounce 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .animate-doh-wobble {
+    animation: doh-wobble 0.75s ease-in-out both;
+  }
+  .animate-doh-pop-in {
+    animation: doh-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .animate-doh-float {
+    animation: doh-float 3s ease-in-out infinite;
+  }
+  .animate-doh-drip {
+    animation: doh-glaze-drip 2s ease-in-out infinite;
+  }
+}
+
+/* ==========================================================================
+   DOH-NUT BRAND MOTION KEYFRAME STANDARDS
+   ========================================================================== */
+@keyframes doh-bounce {
+  0% {
+    transform: translateY(-80px) scale(1, 1);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.8, 0.15);
+  }
+  38% {
+    transform: translateY(0) scale(1.25, 0.75);
+    animation-timing-function: cubic-bezier(0, 0.6, 0.2, 1);
+  }
+  55% {
+    transform: translateY(-30px) scale(0.92, 1.12);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.8, 0.15);
+  }
+  72% {
+    transform: translateY(0) scale(1.1, 0.92);
+    animation-timing-function: cubic-bezier(0, 0.6, 0.2, 1);
+  }
+  85% {
+    transform: translateY(-8px) scale(0.98, 1.03);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.8, 0.15);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+@keyframes doh-wobble {
+  0% {
+    transform: rotate(0deg) scale(1, 1);
+  }
+  15% {
+    transform: rotate(-14deg) skewX(-6deg) scale(1.1, 0.92);
+  }
+  30% {
+    transform: rotate(12deg) skewX(5deg) scale(0.93, 1.08);
+  }
+  45% {
+    transform: rotate(-8deg) skewX(-3deg) scale(1.05, 0.96);
+  }
+  60% {
+    transform: rotate(6deg) skewX(2deg) scale(0.97, 1.03);
+  }
+  75% {
+    transform: rotate(-3deg) skewX(-1deg) scale(1.02, 0.99);
+  }
+  100% {
+    transform: rotate(0deg) scale(1, 1);
+  }
+}
+
+@keyframes doh-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.1) rotate(-18deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.22) rotate(4deg);
+  }
+  70% {
+    transform: scale(0.9) rotate(-2deg);
+  }
+  85% {
+    transform: scale(1.06) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes doh-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2.5deg);
+  }
+}
+
+@keyframes doh-glaze-drip {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    transform: translateY(14px) scaleY(1.2) scaleX(0.9);
+  }
+}
+
+/* Custom smooth scrollbar with brutalist feel */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FDEFEB;
+  border-left: 2px solid #07334F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #07334F;
+  border: 2px solid #FDEFEB;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D92F2F;
+}
+
+/* ==========================================================================
+   PRINT & A4 PDF EXPORT STYLES
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm 12mm 12mm;
+  }
+
+  html, body {
+    background-color: #ffffff !important;
+    color: #07334F !important;
+    font-size: 12pt;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide interactive web navigation, modals, and toolbars */
+  header,
+  nav,
+  aside,
+  footer,
+  .no-print,
+  .print-hide {
+    display: none !important;
+  }
+
+  /* Force page breaks cleanly */
+  .a4-page-sheet {
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    width: 100% !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Ensure colors and backgrounds print faithfully */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
