@@ -835,51 +835,130 @@ export const TypographySection: React.FC = () => {
           </div>
         )}
 
-        {/* ========================================================
-            STAGE TAB 2: BIG SPECIMEN VIEW
-            ======================================================== */}
+      {/* ========================================================
+          STAGE TAB 2: INTERACTIVE FONT SPECIMENS & GLYPH MATRIX
+          ======================================================== */}
         {activePlaygroundTab === 'specimen' && (
-          <div className="p-8 space-y-6">
-            <div
-              className={`p-10 md:p-16 rounded-3xl border-4 ${currentScheme.borderClass} ${currentScheme.bgClass} shadow-[8px_8px_0px_0px_${currentScheme.shadowColor}] min-h-[300px] flex flex-col justify-center items-center text-center transition-all`}
-            >
-              <span className={`px-3 py-1 rounded-full ${currentScheme.cardBgClass} text-[#07334F] text-xs font-black uppercase tracking-wider mb-6 border-2 border-[#07334F] shadow-[2px_2px_0px_0px_#07334F]`}>
-                ★ DOH-NUT Master Typography Specimen ★
-              </span>
-
-              <p
-                className={`font-fun font-black leading-tight tracking-wide text-white drop-shadow-[0_4px_8px_rgba(7,51,79,0.3)] max-w-4xl`}
-                style={{ fontSize: `${Math.round(64 * scaleMultiplier)}px` }}
+          <div className="p-6 md:p-8 space-y-8">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b-2 border-[#07334F]/15">
+              <div>
+                <span className="font-fun text-sm font-black text-[#07334F] uppercase tracking-wider flex items-center gap-1.5">
+                  <Maximize2 size={16} className="text-[#D92F2F]" /> Approved Font Family Specimens & Glyphs
+                </span>
+                <p className="text-xs font-bold text-[#07334F]/70 mt-0.5">
+                  Click any font name or token button to copy directly for Figma and CSS workflows.
+                </p>
+              </div>
+              <button
+                onClick={() =>
+                  handleCopy(
+                    JSON.stringify(
+                      {
+                        h1_hero: { fontFamily: 'Titan One', fontWeight: 900, size: '52px', lineHeight: 1.1 },
+                        h2_headline: { fontFamily: 'Fredoka', fontWeight: 800, size: '32px', lineHeight: 1.2 },
+                        h3_callout: { fontFamily: 'Plus Jakarta Sans', fontWeight: 800, size: '20px', lineHeight: 1.3 },
+                        body_regular: { fontFamily: 'Plus Jakarta Sans', fontWeight: 500, size: '16px', lineHeight: 1.6 },
+                        price_numeral: { fontFamily: 'Fredoka', fontWeight: 900, size: '32px', lineHeight: 1.0 }
+                      },
+                      null,
+                      2
+                    ),
+                    'All Figma Typography Styles'
+                  )
+                }
+                className="px-3.5 py-1.5 bg-[#07334F] text-[#FFD23F] hover:bg-[#297FC1] rounded-xl text-xs font-black border-2 border-[#07334F] shadow-[2px_2px_0px_0px_#D92F2F] flex items-center gap-1.5 transition-all"
               >
-                {getFormattedText(inputText, true)}
-              </p>
+                <Code size={14} /> Copy Figma Typography JSON
+              </button>
+            </div>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <span className="px-4 py-2 rounded-xl bg-white text-[#07334F] font-fun text-sm font-black border-2 border-[#07334F] shadow-[3px_3px_0px_0px_#07334F]">
-                  TITAN ONE / FREDOKA 900
-                </span>
-                <span className="px-4 py-2 rounded-xl bg-[#FFD23F] text-[#07334F] font-display text-sm font-black border-2 border-[#07334F] shadow-[3px_3px_0px_0px_#07334F]">
-                  SCHEME: {currentScheme.name.toUpperCase()}
-                </span>
+            {/* Specimen 1: Titan One (Hero Display) */}
+            <div className="p-6 rounded-3xl bg-white border-4 border-[#07334F] shadow-[6px_6px_0px_0px_#07334F] space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b-2 border-[#07334F]/10">
+                <div className="flex items-center gap-3">
+                  <span className="px-3 py-1 bg-[#D92F2F] text-white text-[11px] font-black rounded-xl uppercase tracking-wider border border-[#07334F]">
+                    HERO DISPLAY FONT
+                  </span>
+                  <h3 className="font-fun text-2xl font-black text-[#07334F]">Titan One</h3>
+                  <span className="text-xs font-mono font-bold text-[#07334F]/60">Weight: 900 (Regular Only)</span>
+                </div>
+                <button
+                  onClick={() => handleCopy('Titan One', 'Titan One Font Name')}
+                  className="px-3 py-1.5 bg-[#FFD23F] text-[#07334F] hover:bg-[#FDEFEB] rounded-xl text-xs font-black border-2 border-[#07334F] shadow-[2px_2px_0px_0px_#07334F] flex items-center gap-1.5"
+                >
+                  {copiedCode === 'Titan One Font Name' ? <Check size={14} /> : <Copy size={14} />}
+                  {copiedCode === 'Titan One Font Name' ? 'Copied Font Name!' : 'Copy Font Name'}
+                </button>
+              </div>
+
+              <div className="p-6 bg-[#FDEFEB] rounded-2xl border-2 border-[#07334F] space-y-3">
+                <div className="font-fun text-4xl sm:text-5xl md:text-6xl font-black text-[#D92F2F] leading-tight">
+                  {getFormattedText(inputText, true)}
+                </div>
+                <div className="font-fun text-xl sm:text-2xl text-[#07334F] tracking-widest break-all">
+                  ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 !?@#$%&amp;*
+                </div>
               </div>
             </div>
 
-            {/* Quick Specimen Metadata Footer */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="p-4 bg-[#FDEFEB] rounded-2xl border-3 border-[#07334F] shadow-[3px_3px_0px_0px_#07334F]">
-                <div className="text-[10px] font-black uppercase text-[#07334F]/60">Headline Font Family</div>
-                <div className="font-fun text-lg font-black text-[#07334F] mt-1">Titan One</div>
-                <div className="text-xs text-[#07334F]/80 mt-1">Google Fonts CDN • Display Sans</div>
+            {/* Specimen 2: Fredoka (Headline & Numerals) */}
+            <div className="p-6 rounded-3xl bg-white border-4 border-[#07334F] shadow-[6px_6px_0px_0px_#07334F] space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b-2 border-[#07334F]/10">
+                <div className="flex items-center gap-3">
+                  <span className="px-3 py-1 bg-[#297FC1] text-white text-[11px] font-black rounded-xl uppercase tracking-wider border border-[#07334F]">
+                    HEADLINE &amp; NUMERALS
+                  </span>
+                  <h3 className="font-display text-2xl font-black text-[#07334F]">Fredoka</h3>
+                  <span className="text-xs font-mono font-bold text-[#07334F]/60">Weights: 600, 700, 800, 900</span>
+                </div>
+                <button
+                  onClick={() => handleCopy('Fredoka', 'Fredoka Font Name')}
+                  className="px-3 py-1.5 bg-[#FFD23F] text-[#07334F] hover:bg-[#FDEFEB] rounded-xl text-xs font-black border-2 border-[#07334F] shadow-[2px_2px_0px_0px_#07334F] flex items-center gap-1.5"
+                >
+                  {copiedCode === 'Fredoka Font Name' ? <Check size={14} /> : <Copy size={14} />}
+                  {copiedCode === 'Fredoka Font Name' ? 'Copied Font Name!' : 'Copy Font Name'}
+                </button>
               </div>
-              <div className="p-4 bg-[#FDEFEB] rounded-2xl border-3 border-[#07334F] shadow-[3px_3px_0px_0px_#07334F]">
-                <div className="text-[10px] font-black uppercase text-[#07334F]/60">Secondary Headings</div>
-                <div className="font-display text-lg font-black text-[#D92F2F] mt-1">Fredoka 800/900</div>
-                <div className="text-xs text-[#07334F]/80 mt-1">Geometric Rounded Headline</div>
+
+              <div className="p-6 bg-[#FDEFEB] rounded-2xl border-2 border-[#07334F] space-y-3">
+                <div className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-[#297FC1] leading-tight">
+                  {getFormattedText(inputText, true)}
+                </div>
+                <div className="font-display text-lg sm:text-xl text-[#07334F] font-bold tracking-wide break-all">
+                  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789 RM
+                </div>
               </div>
-              <div className="p-4 bg-[#FDEFEB] rounded-2xl border-3 border-[#07334F] shadow-[3px_3px_0px_0px_#07334F]">
-                <div className="text-[10px] font-black uppercase text-[#07334F]/60">Editorial &amp; Body</div>
-                <div className="font-sans text-lg font-extrabold text-[#297FC1] mt-1">Plus Jakarta Sans</div>
-                <div className="text-xs text-[#07334F]/80 mt-1">Modern High-Legibility Grotesk</div>
+            </div>
+
+            {/* Specimen 3: Plus Jakarta Sans (Body & Editorial) */}
+            <div className="p-6 rounded-3xl bg-white border-4 border-[#07334F] shadow-[6px_6px_0px_0px_#07334F] space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b-2 border-[#07334F]/10">
+                <div className="flex items-center gap-3">
+                  <span className="px-3 py-1 bg-[#07334F] text-[#FDEFEB] text-[11px] font-black rounded-xl uppercase tracking-wider border border-[#07334F]">
+                    BODY &amp; EDITORIAL
+                  </span>
+                  <h3 className="font-sans text-2xl font-black text-[#07334F]">Plus Jakarta Sans</h3>
+                  <span className="text-xs font-mono font-bold text-[#07334F]/60">Weights: 400, 500, 600, 700, 800</span>
+                </div>
+                <button
+                  onClick={() => handleCopy('Plus Jakarta Sans', 'Plus Jakarta Sans Font Name')}
+                  className="px-3 py-1.5 bg-[#FFD23F] text-[#07334F] hover:bg-[#FDEFEB] rounded-xl text-xs font-black border-2 border-[#07334F] shadow-[2px_2px_0px_0px_#07334F] flex items-center gap-1.5"
+                >
+                  {copiedCode === 'Plus Jakarta Sans Font Name' ? <Check size={14} /> : <Copy size={14} />}
+                  {copiedCode === 'Plus Jakarta Sans Font Name' ? 'Copied Font Name!' : 'Copy Font Name'}
+                </button>
+              </div>
+
+              <div className="p-6 bg-[#FDEFEB] rounded-2xl border-2 border-[#07334F] space-y-3">
+                <div className="font-sans text-xl sm:text-2xl font-extrabold text-[#07334F] leading-snug">
+                  {getFormattedText(inputText, false)} — The quick brown fox jumps over the lazy dog.
+                </div>
+                <p className="font-sans text-sm font-medium text-[#07334F]/85 leading-relaxed">
+                  Crafted daily in Kuala Lumpur with 24-hour slow fermented brioche dough, glazed with real strawberry fruit purée and bold street attitude.
+                </p>
+                <div className="font-sans text-sm text-[#07334F]/70 font-mono pt-2 border-t border-[#07334F]/10">
+                  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789 @#$%&amp;*()_+
+                </div>
               </div>
             </div>
           </div>
